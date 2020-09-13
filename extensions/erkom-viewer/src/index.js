@@ -18,7 +18,11 @@ export default {
           icon: 'level',
           type: 'setToolActive',
           commandName: 'setToolActive',
-          commandOptions: { toolName: 'BarTool', mouseButtonMask: 1 },
+          commandOptions: {
+            toolName: 'ChestProthesisTool',
+            mouseButtonMask: 1,
+          },
+          // commandOptions: { toolName: 'BarTool', mouseButtonMask: 1 },
         },
       ],
       defaultContext: 'VIEWER',
