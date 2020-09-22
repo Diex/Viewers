@@ -1,5 +1,6 @@
 import csTools from 'cornerstone-tools';
-const ChestProthesisTool = csTools.ChestProthesisTool;
+const ChestWallTool = csTools.ChestWallTool;
+// const LengthTool = csTools.LengthTool;
 
 /**
  *
@@ -8,5 +9,6 @@ const ChestProthesisTool = csTools.ChestProthesisTool;
  */
 
 export default function init({ servicesManager, configuration = {} }) {
-  csTools.addTool(ChestProthesisTool, { name: 'ChestProthesisTool' });
+  // csTools.addTool(LengthTool, { name: 'LengthTool' });
+  csTools.addTool(ChestWallTool, { name: 'ChestWallTool' });
 }

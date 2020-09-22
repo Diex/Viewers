@@ -19,10 +19,9 @@ export default {
           type: 'setToolActive',
           commandName: 'setToolActive',
           commandOptions: {
-            toolName: 'ChestProthesisTool',
+            toolName: 'ChestWallTool',
             mouseButtonMask: 1,
           },
-          // commandOptions: { toolName: 'BarTool', mouseButtonMask: 1 },
         },
       ],
       defaultContext: 'VIEWER',
