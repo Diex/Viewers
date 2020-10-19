@@ -4,21 +4,38 @@ window.config = {
   extensions: [],
   showStudyList: true,
   filterQueryParam: false,
+
+  enableGoogleCloudAdapter: false,
   servers: {
     dicomWeb: [
       {
-        name: 'DCM4CHEE',
-        wadoUriRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/wado',
-        qidoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
-        wadoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
-        qidoSupportsIncludeField: true,
-        imageRendering: 'wadors',
-        thumbnailRendering: 'wadors',
+        name: 'GOOGLE',
         enableStudyLazyLoad: true,
         supportsFuzzyMatching: true,
+        wadoUriRoot: 'http://localhost:5001/erkom-prod/us-central1/api/wado',
+        // The Search transaction of this Service is also known as QIDO-RS.
+        qidoRoot: 'http://localhost:5001/erkom-prod/us-central1/api/wado',
+        //The Retrieve transaction of this Service is also known as WADO-RS.
+        wadoRoot: 'http://localhost:5001/erkom-prod/us-central1/api/wado'
       },
     ],
   },
+
+  // servers: {
+  //   dicomWeb: [
+  //     {
+  //       name: 'DCM4CHEE',
+  //       wadoUriRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/wado',
+  //       qidoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
+  //       wadoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
+  //       qidoSupportsIncludeField: true,
+  //       imageRendering: 'wadors',
+  //       thumbnailRendering: 'wadors',
+  //       enableStudyLazyLoad: true,
+  //       supportsFuzzyMatching: true,
+  //     },
+  //   ],
+  // },
   // Extensions should be able to suggest default values for these?
   // Or we can require that these be explicitly set
   hotkeys: [
