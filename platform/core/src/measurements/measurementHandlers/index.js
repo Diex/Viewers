@@ -26,6 +26,7 @@ const MeasurementHandlers = {
   onAdded(event) {
     const eventData = getEventData(event);
     const { toolType } = eventData;
+
     const {
       toolGroupId,
       toolGroup,

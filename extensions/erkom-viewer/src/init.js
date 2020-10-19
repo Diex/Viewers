@@ -1,7 +1,7 @@
 import csTools from 'cornerstone-tools';
 const ChestWallTool = csTools.ChestWallTool;
-// const LengthTool = csTools.LengthTool;
-
+const LengthToolTest = csTools.LengthToolTest;
+// console.log('LengthToolTest', LengthToolTest);
 /**
  *
  * @param {object} configuration
@@ -9,6 +9,6 @@ const ChestWallTool = csTools.ChestWallTool;
  */
 
 export default function init({ servicesManager, configuration = {} }) {
-  // csTools.addTool(LengthTool, { name: 'LengthTool' });
-  csTools.addTool(ChestWallTool, { name: 'ChestWallTool' });
+  csTools.addTool(ChestWallTool, { name: 'ChestWall' });
+  csTools.addTool(LengthToolTest, { name: 'LengthToolTest' });
 }

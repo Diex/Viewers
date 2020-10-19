@@ -45,6 +45,15 @@ const definitions = [
     commandOptions: { toolName: 'StackScroll' },
   },
   {
+    id: 'ChestWall',
+    label: 'ChestWall',
+    icon: 'circle',
+    //
+    type: TOOLBAR_BUTTON_TYPES.SET_TOOL_ACTIVE,
+    commandName: 'setToolActive',
+    commandOptions: { toolName: 'ChestWall' },
+  },
+  {
     id: 'Zoom',
     label: 'Zoom',
     icon: 'search-plus',

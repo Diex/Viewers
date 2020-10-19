@@ -15,7 +15,7 @@ export default function({ eventData, tool, toolGroupId, toolGroup }) {
   // Stop here if the tool data shall not be persisted (e.g. temp tools)
   if (!collection) return;
 
-  log.info('CornerstoneToolsMeasurementModified');
+  // log.info('CornerstoneToolsMeasurementModified');
 
   const measurement = collection.find(t => t._id === measurementData._id);
   let childMeasurement = measurement && measurement[tool.attribute];

@@ -312,10 +312,10 @@ class MeasurementService {
     };
 
     if (this.measurements[internalId]) {
-      log.info(
-        `Measurement already defined. Updating measurement.`,
-        newMeasurement
-      );
+      // log.info(
+      //   `Measurement already defined. Updating measurement.`,
+      //   newMeasurement
+      // );
       this.measurements[internalId] = newMeasurement;
       this._broadcastChange(
         this.EVENTS.MEASUREMENT_UPDATED,

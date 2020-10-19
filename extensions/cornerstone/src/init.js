@@ -266,7 +266,7 @@ const _connectToolsToMeasurementService = measurementService => {
         event.detail.element.addEventListener(
           csToolsEvtName,
           ({ detail: csToolsAnnotation }) => {
-            console.log(`Cornerstone Element Event: ${csToolsEvtName}`);
+            // console.log(`Cornerstone Element Event: ${csToolsEvtName}`);
             addOrUpdateMeasurement(csToolsAnnotation);
           }
         );
