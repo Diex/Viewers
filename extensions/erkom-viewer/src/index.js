@@ -9,6 +9,9 @@ export default {
   preRegistration({ servicesManager, configuration = {} }) {
     init({ servicesManager, configuration });
   },
+
+  // cuando el viewer agrega las extensiones, se fija
+  // si la extensión define un boton en una toolbar
   getToolbarModule() {
     return {
       definitions: [
@@ -23,17 +26,17 @@ export default {
             mouseButtonMask: 1,
           },
         },
-        // {
-        //   id: 'LengthToolTest',
-        //   label: 'LengthTool Test',
-        //   icon: 'level',
-        //   type: 'setToolActive',
-        //   commandName: 'setToolActive',
-        //   commandOptions: {
-        //     toolName: 'LengthToolTest',
-        //     mouseButtonMask: 1,
-        //   },
-        // },
+        {
+          id: 'LengthToolTest',
+          label: 'LengthTool Test',
+          icon: 'level',
+          type: 'setToolActive',
+          commandName: 'setToolActive',
+          commandOptions: {
+            toolName: 'LengthToolTest',
+            mouseButtonMask: 1,
+          },
+        },
       ],
       defaultContext: 'VIEWER',
     };

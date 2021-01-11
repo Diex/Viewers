@@ -1,7 +1,6 @@
 import csTools from 'cornerstone-tools';
 const ChestWallTool = csTools.ChestWallTool;
 const LengthToolTest = csTools.LengthToolTest;
-// console.log('LengthToolTest', LengthToolTest);
 /**
  *
  * @param {object} configuration

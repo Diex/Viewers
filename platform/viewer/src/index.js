@@ -30,6 +30,14 @@ import OHIFDicomRtExtension from '@ohif/extension-dicom-rt';
 import OHIFDicomMicroscopyExtension from '@ohif/extension-dicom-microscopy';
 import OHIFDicomPDFExtension from '@ohif/extension-dicom-pdf';
 import OHIFDicomP10DownloaderExtension from '@ohif/extension-dicom-p10-downloader';
+// como funciona import
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
+// '@' means que lo busca en las dependencias (en el package.json)
+// en el package aparece agregadas todas las extensions que figuran en
+// '(root)/extensions/' esto seguramente lo hace el script que buildea
+// el viewer.
+// esa extension hace "import csTools from 'cornerstone-tools';"
+// y ahi se conecta con la tool (en cornerstoneTools)
 import OHIFErkomViewerExtension from '@ohif/extension-erkom-viewer';
 
 /*
@@ -55,6 +63,8 @@ const appProps = {
   ],
 };
 
+console.log('current config:');
+console.log(config);
 /** Create App */
 const app = React.createElement(App, appProps, null);
 
