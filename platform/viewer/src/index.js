@@ -39,6 +39,10 @@ import OHIFDicomP10DownloaderExtension from '@ohif/extension-dicom-p10-downloade
 // esa extension hace "import csTools from 'cornerstone-tools';"
 // y ahi se conecta con la tool (en cornerstoneTools)
 import OHIFErkomViewerExtension from '@ohif/extension-erkom-viewer';
+//import OHIFDicomTagBrowserExtension from '@ohif/extension-dicom-tag-browser';
+// Add this for Debugging purposes:
+//import OHIFDebuggingExtension from '@ohif/extension-debugging';
+import { version } from '../package.json';
 
 /*
  * Default Settings
@@ -47,6 +51,8 @@ let config = {};
 
 if (window) {
   config = window.config || {};
+
+  window.version = version;
 }
 
 const appProps = {
@@ -58,8 +64,13 @@ const appProps = {
     OHIFDicomPDFExtension,
     OHIFDicomSegmentationExtension,
     OHIFDicomRtExtension,
+<<<<<<< HEAD
     OHIFDicomP10DownloaderExtension,
     OHIFErkomViewerExtension,
+=======
+    //OHIFDebuggingExtension,
+    //OHIFDicomTagBrowserExtension,
+>>>>>>> master
   ],
 };
 

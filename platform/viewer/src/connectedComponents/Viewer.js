@@ -19,6 +19,7 @@ import UserManagerContext from '../context/UserManagerContext';
 import AppContext from '../context/AppContext';
 
 import './Viewer.css';
+import { finished } from 'stream';
 
 class Viewer extends Component {
   static propTypes = {
@@ -82,6 +83,8 @@ class Viewer extends Component {
         disassociate: this.disassociateStudy,
       },
     });
+
+    this._getActiveViewport = this._getActiveViewport.bind(this);
   }
 
   state = {
@@ -189,6 +192,7 @@ class Viewer extends Component {
           currentTimepointId,
         ]);
       }
+
       this.setState({
         thumbnails: _mapStudiesToThumbnails(studies),
       });
@@ -197,6 +201,7 @@ class Viewer extends Component {
 
   componentDidUpdate(prevProps) {
     const { studies, isStudyLoaded } = this.props;
+
     if (studies !== prevProps.studies) {
       this.setState({
         thumbnails: _mapStudiesToThumbnails(studies),
@@ -209,6 +214,10 @@ class Viewer extends Component {
       this.timepointApi.retrieveTimepoints({ PatientID });
       this.measurementApi.retrieveMeasurements(PatientID, [currentTimepointId]);
     }
+  }
+
+  _getActiveViewport() {
+    return this.props.viewports[this.props.activeViewportIndex];
   }
 
   render() {
@@ -311,11 +320,11 @@ class Viewer extends Component {
                   activeIndex={this.props.activeViewportIndex}
                 />
               ) : (
-                <ConnectedStudyBrowser
-                  studies={this.state.thumbnails}
-                  studyMetadata={this.props.studies}
-                />
-              )}
+                  <ConnectedStudyBrowser
+                    studies={this.state.thumbnails}
+                    studyMetadata={this.props.studies}
+                  />
+                )}
             </SidePanel>
           </ErrorBoundaryDialog>
 
@@ -338,6 +347,8 @@ class Viewer extends Component {
                   viewports={this.props.viewports}
                   studies={this.props.studies}
                   activeIndex={this.props.activeViewportIndex}
+                  activeViewport={this.props.viewports[this.props.activeViewportIndex]}
+                  getActiveViewport={this._getActiveViewport}
                 />
               )}
             </SidePanel>
@@ -355,13 +366,12 @@ export default withDialog(Viewer);
  * a mapping layer?
  *
  * TODO[react]:
- * - Add sorting of display sets
  * - Add showStackLoadingProgressBar option
  *
  * @param {Study[]} studies
  * @param {DisplaySet[]} studies[].displaySets
  */
-const _mapStudiesToThumbnails = function(studies) {
+const _mapStudiesToThumbnails = function (studies) {
   return studies.map(study => {
     const { StudyInstanceUID } = study;
 
@@ -369,9 +379,9 @@ const _mapStudiesToThumbnails = function(studies) {
       const {
         displaySetInstanceUID,
         SeriesDescription,
-        SeriesNumber,
         InstanceNumber,
         numImageFrames,
+        SeriesNumber,
       } = displaySet;
 
       let imageId;
@@ -395,9 +405,9 @@ const _mapStudiesToThumbnails = function(studies) {
         altImageText,
         displaySetInstanceUID,
         SeriesDescription,
-        SeriesNumber,
         InstanceNumber,
         numImageFrames,
+        SeriesNumber,
       };
     });
 

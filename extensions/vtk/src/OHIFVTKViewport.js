@@ -50,26 +50,29 @@ class OHIFVTKViewport extends Component {
     volumes: null,
     paintFilterLabelMapImageData: null,
     paintFilterBackgroundImageData: null,
+    percentComplete: 0,
+    isLoaded: false,
   };
 
   static propTypes = {
     viewportData: PropTypes.shape({
-      studies: PropTypes.array,
+      studies: PropTypes.array.isRequired,
       displaySet: PropTypes.shape({
-        StudyInstanceUID: PropTypes.string,
-        displaySetInstanceUID: PropTypes.string,
+        StudyInstanceUID: PropTypes.string.isRequired,
+        displaySetInstanceUID: PropTypes.string.isRequired,
         sopClassUIDs: PropTypes.arrayOf(PropTypes.string),
         SOPInstanceUID: PropTypes.string,
         frameIndex: PropTypes.number,
       }),
     }),
-    viewportIndex: PropTypes.number,
+    viewportIndex: PropTypes.number.isRequired,
     children: PropTypes.node,
     onScroll: PropTypes.func,
+    servicesManager: PropTypes.object.isRequired,
   };
 
   static defaultProps = {
-    onScroll: () => {},
+    onScroll: () => { },
   };
 
   static id = 'OHIFVTKViewport';
@@ -155,6 +158,15 @@ class OHIFVTKViewport extends Component {
     if (brushStackState) {
       const { activeLabelmapIndex } = brushStackState;
       const labelmap3D = brushStackState.labelmaps3D[activeLabelmapIndex];
+
+      if (brushStackState.labelmaps3D.length > 1 && this.props.viewportIndex === 0) {
+        const { UINotificationService } = this.props.servicesManager.services;
+        UINotificationService.show({
+          title: 'Overlapping Segmentation Found',
+          message: 'Overlapping segmentations cannot be displayed when in MPR mode',
+          type: 'info',
+        });
+      }
 
       this.segmentsDefaultProperties = labelmap3D.segmentsHidden.map(
         isHidden => {
@@ -351,7 +363,7 @@ class OHIFVTKViewport extends Component {
 
     if (
       displaySet.displaySetInstanceUID !==
-        prevDisplaySet.displaySetInstanceUID ||
+      prevDisplaySet.displaySetInstanceUID ||
       displaySet.SOPInstanceUID !== prevDisplaySet.SOPInstanceUID ||
       displaySet.frameIndex !== prevDisplaySet.frameIndex
     ) {
@@ -383,6 +395,24 @@ class OHIFVTKViewport extends Component {
       }
     };
 
+    const onPixelDataInsertedErrorCallback = error => {
+      const { UINotificationService } = this.props.servicesManager.services;
+
+      if (!this.hasError) {
+        if (this.props.viewportIndex === 0) {
+          // Only show the notification from one viewport 1 in MPR2D.
+          UINotificationService.show({
+            title: 'MPR Load Error',
+            message: error.message,
+            type: 'error',
+            autoClose: false,
+          });
+        }
+
+        this.hasError = true;
+      }
+    };
+
     const onAllPixelDataInsertedCallback = () => {
       this.setState({
         isLoaded: true,
@@ -391,6 +421,7 @@ class OHIFVTKViewport extends Component {
 
     imageDataObject.onPixelDataInserted(onPixelDataInsertedCallback);
     imageDataObject.onAllPixelDataInserted(onAllPixelDataInsertedCallback);
+    imageDataObject.onPixelDataInsertedError(onPixelDataInsertedErrorCallback);
   }
 
   render() {
