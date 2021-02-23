@@ -1,7 +1,7 @@
 window.config = {
   // cornerstoneExtensionConfig: {},
   flag: 'erkom-prod',
-  routerBasename: '/',
+  routerBasename: '/viewer',
   showStudyList: true,
   filterQueryParam: false,
   servers: {
@@ -10,14 +10,15 @@ window.config = {
         name: 'GOOGLE',
         enableStudyLazyLoad: true,
         supportsFuzzyMatching: true,
-        wadoUriRoot: 'https://us-central1-erkom-prod.cloudfunctions.net/api/wado',
+        wadoUriRoot:
+          'https://us-central1-erkom-prod.cloudfunctions.net/api/wado',
         qidoRoot: 'https://us-central1-erkom-prod.cloudfunctions.net/api/wado',
         wadoRoot: 'https://us-central1-erkom-prod.cloudfunctions.net/api/wado',
         qidoSupportsIncludeField: true,
-        imageRendering: 'wadors',     // sin esto no anda
+        imageRendering: 'wadors', // sin esto no anda
         thumbnailRendering: 'wadors', // sin esto no anda
       },
     ],
   },
-  maxConcurrentMetadataRequests: 5
+  maxConcurrentMetadataRequests: 5,
 };

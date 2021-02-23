@@ -1,25 +1,10 @@
 window.config = {
-  // default: '/'
   routerBasename: '/',
   extensions: [],
   showStudyList: true,
   filterQueryParam: false,
 
   enableGoogleCloudAdapter: false,
-  // servers: {
-  //   dicomWeb: [
-  //     {
-  //       name: 'GOOGLE',
-  //       enableStudyLazyLoad: true,
-  //       supportsFuzzyMatching: true,
-  //       wadoUriRoot: 'http://localhost:5001/erkom-prod/us-central1/api/wado',
-  //       // The Search transaction of this Service is also known as QIDO-RS.
-  //       qidoRoot: 'http://localhost:5001/erkom-prod/us-central1/api/wado',
-  //       //The Retrieve transaction of this Service is also known as WADO-RS.
-  //       wadoRoot: 'http://localhost:5001/erkom-prod/us-central1/api/wado'
-  //     },
-  //   ],
-  // },
 
   servers: {
     dicomWeb: [

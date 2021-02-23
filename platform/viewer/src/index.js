@@ -25,11 +25,11 @@ import ReactDOM from 'react-dom';
  */
 import OHIFVTKExtension from '@ohif/extension-vtk';
 import OHIFDicomHtmlExtension from '@ohif/extension-dicom-html';
-import OHIFDicomSegmentationExtension from '@ohif/extension-dicom-segmentation';
-import OHIFDicomRtExtension from '@ohif/extension-dicom-rt';
+// import OHIFDicomSegmentationExtension from '@ohif/extension-dicom-segmentation';
+// import OHIFDicomRtExtension from '@ohif/extension-dicom-rt';
 import OHIFDicomMicroscopyExtension from '@ohif/extension-dicom-microscopy';
 import OHIFDicomPDFExtension from '@ohif/extension-dicom-pdf';
-import OHIFDicomP10DownloaderExtension from '@ohif/extension-dicom-p10-downloader';
+// import OHIFDicomP10DownloaderExtension from '@ohif/extension-dicom-p10-downloader';
 // como funciona import
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
 // '@' means que lo busca en las dependencias (en el package.json)
@@ -39,6 +39,7 @@ import OHIFDicomP10DownloaderExtension from '@ohif/extension-dicom-p10-downloade
 // esa extension hace "import csTools from 'cornerstone-tools';"
 // y ahi se conecta con la tool (en cornerstoneTools)
 import OHIFErkomViewerExtension from '@ohif/extension-erkom-viewer';
+
 //import OHIFDicomTagBrowserExtension from '@ohif/extension-dicom-tag-browser';
 // Add this for Debugging purposes:
 //import OHIFDebuggingExtension from '@ohif/extension-debugging';
@@ -62,15 +63,12 @@ const appProps = {
     OHIFDicomHtmlExtension,
     OHIFDicomMicroscopyExtension,
     OHIFDicomPDFExtension,
-    OHIFDicomSegmentationExtension,
-    OHIFDicomRtExtension,
-<<<<<<< HEAD
-    OHIFDicomP10DownloaderExtension,
+    // OHIFDicomSegmentationExtension,
+    // OHIFDicomRtExtension,
+    // OHIFDicomP10DownloaderExtension,
     OHIFErkomViewerExtension,
-=======
     //OHIFDebuggingExtension,
     //OHIFDicomTagBrowserExtension,
->>>>>>> master
   ],
 };
 
