@@ -1,6 +1,6 @@
 import csTools from 'cornerstone-tools';
 const ChestWallTool = csTools.ChestWallTool;
-const LengthToolTest = csTools.LengthToolTest;
+// const ExportPDF = csTools.ChestWallTool.exportPDF;
 /**
  *
  * @param {object} configuration
@@ -9,5 +9,5 @@ const LengthToolTest = csTools.LengthToolTest;
 
 export default function init({ servicesManager, configuration = {} }) {
   csTools.addTool(ChestWallTool, { name: 'ChestWall' });
-  csTools.addTool(LengthToolTest, { name: 'LengthToolTest' });
+  // csTools.addTool(ExportPDF, { name: 'ExportPDF' });
 }

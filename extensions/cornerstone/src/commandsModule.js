@@ -6,7 +6,8 @@ import setCornerstoneLayout from './utils/setCornerstoneLayout.js';
 import { getEnabledElement } from './state';
 import CornerstoneViewportDownloadForm from './CornerstoneViewportDownloadForm';
 const scroll = cornerstoneTools.import('util/scroll');
-
+import { jsPDF } from 'jspdf';
+import 'svg2pdf.js';
 const { studyMetadataManager } = OHIF.utils;
 const { setViewportSpecificData } = OHIF.redux.actions;
 
@@ -287,6 +288,44 @@ const commandsModule = ({ servicesManager }) => {
 
       refreshCornerstoneViewports();
     },
+    exportPDF: () => {
+      console.log('this.works!');
+      console.log('window.chestWallToolSVG', window.chestWallToolSVG);
+      if (window.chestWallToolSVG) {
+        // Convert SVG string to HTML element
+        // const svgWrapperElement = document.getElementById('svg-wrapper')
+        // svgWrapperElement.innerHTML = window.chestWallToolSVG
+        // const svgElement = svgWrapperElement.firstChild
+        const svgElement = window.chestWallToolSVG;
+        // Force layout calculation
+        svgElement.getBoundingClientRect();
+        const width = (svgElement.width.baseVal.value / 72) * 25.4;
+        const height = (svgElement.height.baseVal.value / 72) * 25.4;
+
+        // eslint-disable-next-line
+        // const pdf = new jsPDF(width > height ? 'l' : 'p', 'pt', [
+        //     width,
+        //     height,
+        // ])
+        // eslint-disable-next-line
+        const pdf = new jsPDF({
+          orientation: 'landscape',
+          unit: 'mm',
+          format: [420, 297],
+        });
+
+        const svgOptions = { width, height };
+        // console.log(pdf);
+        // pdf.addSvgAsImage(svgElement);
+        // pdf.save('svg.pdf');
+
+        pdf.svg(svgElement, svgOptions).then(() => {
+          pdf.save('svg.pdf');
+        });
+      } else {
+        console.log(' no window.chestWallToolSVG');
+      }
+    },
   };
 
   const definitions = {
@@ -399,6 +438,11 @@ const commandsModule = ({ servicesManager }) => {
     },
     setWindowLevel: {
       commandFn: actions.setWindowLevel,
+      storeContexts: ['viewports'],
+      options: {},
+    },
+    exportPDF: {
+      commandFn: actions.exportPDF,
       storeContexts: ['viewports'],
       options: {},
     },

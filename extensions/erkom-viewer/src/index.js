@@ -1,5 +1,11 @@
 import init from './init';
 
+const TOOLBAR_BUTTON_TYPES = {
+  COMMAND: 'command',
+  SET_TOOL_ACTIVE: 'setToolActive',
+  BUILT_IN: 'builtIn',
+};
+
 export default {
   /**
    * Only required property. Should be a unique value across all extensions.
@@ -27,15 +33,15 @@ export default {
           },
         },
         {
-          id: 'LengthToolTest',
-          label: 'LengthTool Test',
+          id: 'Export PDF',
+          label: 'Export PDF',
           icon: 'level',
-          type: 'setToolActive',
-          commandName: 'setToolActive',
-          commandOptions: {
-            toolName: 'LengthToolTest',
-            mouseButtonMask: 1,
-          },
+          type: TOOLBAR_BUTTON_TYPES.COMMAND,
+          commandName: 'exportPDF',
+          // commandOptions: {
+          //   toolName: 'ChestWall',
+          //   mouseButtonMask: 1,
+          // },
         },
       ],
       defaultContext: 'VIEWER',

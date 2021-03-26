@@ -1,7 +1,7 @@
 window.config = {
   // cornerstoneExtensionConfig: {},
   flag: 'erkom-prod',
-  routerBasename: '/viewer',
+  routerBasename: '/',
   showStudyList: true,
   filterQueryParam: false,
   servers: {
